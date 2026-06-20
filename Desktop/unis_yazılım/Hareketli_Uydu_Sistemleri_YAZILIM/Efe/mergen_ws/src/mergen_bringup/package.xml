@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<package format="3">
+  <name>mergen_bringup</name>
+  <version>0.1.0</version>
+  <description>Mergen sistemi tek komutla baslatma paketi.</description>
+  <maintainer email="unis@example.com">UniS Yazilim Ekibi</maintainer>
+  <license>MIT</license>
+  <buildtool_depend>ament_cmake</buildtool_depend>
+  <exec_depend>mergen_control</exec_depend>
+  <exec_depend>mergen_estimation</exec_depend>
+  <exec_depend>mergen_gazebo</exec_depend>
+</package>

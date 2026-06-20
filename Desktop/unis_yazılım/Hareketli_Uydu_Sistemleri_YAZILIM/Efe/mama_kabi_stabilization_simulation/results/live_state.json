@@ -1,0 +1,12 @@
+{
+  "time_s": 299.9900,
+  "azimuth_deg": 0.0000,
+  "elevation_deg": 0.0000,
+  "target_azimuth_deg": 0.0000,
+  "target_elevation_deg": 0.0000,
+  "roll_deg": 0.2767,
+  "pitch_deg": 0.0968,
+  "boresight_error_deg": 0.2931,
+  "locked": true,
+  "mode": "MAMA_KABI_STABILIZATION"
+}

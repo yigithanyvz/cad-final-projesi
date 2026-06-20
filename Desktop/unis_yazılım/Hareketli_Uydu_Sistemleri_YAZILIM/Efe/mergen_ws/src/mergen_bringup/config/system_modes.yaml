@@ -1,0 +1,7 @@
+system:
+  default_mode: automatic
+  allowed_modes:
+    - manual
+    - automatic
+    - search
+    - safe

@@ -1,0 +1,17 @@
+Senaryo: hedef_kaybi_tekrar_yakalama
+Ornek sayisi: 12000
+Toplam sure: 119.99 saniye
+Ilk hassas kilitlenme: 0.23
+Hassas kilit orani: 59.78%
+Ilk takip basarisi: 0.06
+Takip basari orani: 60.00%
+Kamera tespit orani: 60.66%
+Maks boresight hata: 14.45274 derece
+Arama modu adim sayisi: 4721
+Yeniden yakalama zamani: 92.21000000000001
+Lazer guvenlik kesme sayisi: 0
+Lazer kesme suresi: 0.00 saniye
+Hassas kilit esigi: 0.20 derece
+Takip basari esigi: 1.00 derece
+Dataset CSV: /home/simsim/Masaüstü/unis/simge_elif/simulasyon_sonuclari/senaryolar/hedef_kaybi_tekrar_yakalama/hedef_kaybi_tekrar_yakalama_dataset.csv
+Sonuc CSV: /home/simsim/Masaüstü/unis/simge_elif/simulasyon_sonuclari/senaryolar/hedef_kaybi_tekrar_yakalama/hedef_kaybi_tekrar_yakalama_v2_sonuc.csv

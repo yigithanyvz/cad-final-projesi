@@ -1,0 +1,12 @@
+{
+  "time_s": 299.9900,
+  "azimuth_deg": 119.7658,
+  "elevation_deg": 30.5187,
+  "target_azimuth_deg": 119.6858,
+  "target_elevation_deg": 30.7265,
+  "roll_deg": -0.1895,
+  "pitch_deg": 7.9737,
+  "boresight_error_deg": 0.2227,
+  "locked": true,
+  "mode": "AZ_EL_TRACKING"
+}

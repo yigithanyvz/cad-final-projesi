@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<package format="3">
+  <name>mergen_description</name>
+  <version>0.1.0</version>
+  <description>Mergen URDF/Xacro ve mesh tanimlari.</description>
+  <maintainer email="unis@example.com">UniS Yazilim Ekibi</maintainer>
+  <license>MIT</license>
+  <buildtool_depend>ament_cmake</buildtool_depend>
+  <exec_depend>xacro</exec_depend>
+  <exec_depend>robot_state_publisher</exec_depend>
+</package>

@@ -1,0 +1,11 @@
+V2 Dataset Tabanli Azimut/Elevasyon Simulasyon Ozeti
+Kaynak dataset: /home/simsim/Masaüstü/unis/Efe/azimuth_elevation_simulation/results/generated_dataset.csv
+Ornek sayisi: 30000
+Toplam sure: 299.99 saniye
+Ilk kilitlenme: 0.20 saniye
+Kilit orani: 99.93%
+Maks boresight hata: 1.21533 derece
+Lazer guvenlik kesme sayisi: 0
+Kamera FOV: 55.0x42.0 derece
+Cozunurluk: 320x240 px
+Deadband: 0.087891 derece
