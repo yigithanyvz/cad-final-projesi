@@ -1,0 +1,258 @@
+<?xml version="1.0"?>
+<sdf version="1.6">
+  <model name="satellite">
+    <static>true</static>
+    <link name="base_link">
+      <inertial>
+        <mass>0.1</mass>
+        <inertia>
+          <ixx>0.0109652</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.0109652</iyy>
+          <iyz>0</iyz>
+          <izz>0.0109652</izz>
+        </inertia>
+      </inertial>
+      <visual name="base_link_visual">
+        <geometry>
+          <mesh>
+            <scale>3.31137 3.31137 3.31137</scale>
+            <uri>model://totalmontaj_urdf/meshes/base_link.STL</uri>
+          </mesh>
+        </geometry>
+      </visual>
+    </link>
+    <joint name="alt_planet" type="revolute">
+      <pose relative_to="base_link">-1.2714 -4.54154 -1.98133 0 0 -3.14159</pose>
+      <parent>base_link</parent>
+      <child>alt_planet_link</child>
+      <axis>
+        <xyz>0 0 1</xyz>
+        <limit>
+          <lower>-1e+16</lower>
+          <upper>1e+16</upper>
+        </limit>
+      </axis>
+    </joint>
+    <link name="alt_planet_link">
+      <inertial>
+        <mass>0.1</mass>
+        <inertia>
+          <ixx>0.0109652</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.0109652</iyy>
+          <iyz>0</iyz>
+          <izz>0.0109652</izz>
+        </inertia>
+      </inertial>
+      <visual name="alt_planet_link_visual">
+        <geometry>
+          <mesh>
+            <scale>3.31137 3.31137 3.31137</scale>
+            <uri>model://totalmontaj_urdf/meshes/alt_planet_link.STL</uri>
+          </mesh>
+        </geometry>
+      </visual>
+    </link>
+    <joint name="kremayer" type="prismatic">
+      <pose relative_to="alt_planet_link">-0.002917 0.001498 0.067585 1.5708 0 1.0965</pose>
+      <parent>alt_planet_link</parent>
+      <child>kremayer_link</child>
+      <axis>
+        <xyz>0 0 1</xyz>
+        <limit>
+          <lower>-0.1</lower>
+          <upper>0.1</upper>
+        </limit>
+      </axis>
+    </joint>
+    <link name="kremayer_link">
+      <inertial>
+        <mass>0.2</mass>
+        <inertia>
+          <ixx>0.022569</ixx>
+          <ixy>0.000385127</ixy>
+          <ixz>-1.38945e-06</ixz>
+          <iyy>0.0221626</iyy>
+          <iyz>2.30424e-06</iyz>
+          <izz>0.0228013</izz>
+        </inertia>
+      </inertial>
+      <visual name="kremayer_link_visual">
+        <geometry>
+          <mesh>
+            <scale>3.31137 3.31137 3.31137</scale>
+            <uri>model://totalmontaj_urdf/meshes/kremayer_link.STL</uri>
+          </mesh>
+        </geometry>
+      </visual>
+      <visual name="kremayer_fixed_teleskobik_dis">
+        <pose>0 0 0 0 0.18022 0</pose>
+        <geometry>
+          <mesh>
+            <scale>3.31137 3.31137 3.31137</scale>
+            <uri>model://totalmontaj_urdf/meshes/teleskobikcubuk_dis_kisim.STL</uri>
+          </mesh>
+        </geometry>
+      </visual>
+    </link>
+    <joint name="teleskobik_cubuk_ic_kisim" type="prismatic">
+      <pose relative_to="kremayer_link">0 0.340872 0 -1.5708 -1.09648 0</pose>
+      <parent>kremayer_link</parent>
+      <child>teleskobik_cubuk_ic_kisim_link</child>
+      <axis>
+        <xyz>0 0 1</xyz>
+        <limit>
+          <lower>0</lower>
+          <upper>0.02173</upper>
+        </limit>
+      </axis>
+    </joint>
+    <link name="teleskobik_cubuk_ic_kisim_link">
+      <inertial>
+        <mass>0.1</mass>
+        <inertia>
+          <ixx>0.0109652</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.0109652</iyy>
+          <iyz>0</iyz>
+          <izz>0.0109652</izz>
+        </inertia>
+      </inertial>
+      <visual name="teleskobik_ic_visual">
+        <geometry>
+          <mesh>
+            <scale>3.31137 3.31137 3.31137</scale>
+            <uri>model://totalmontaj_urdf/meshes/teleskobik_cubuk_ic_kisim_link.STL</uri>
+          </mesh>
+        </geometry>
+      </visual>
+    </link>
+    <joint name="yarim_kure_pitch" type="revolute">
+      <pose relative_to="teleskobik_cubuk_ic_kisim_link">0.005917 -0.002604 0.738303 1.5708 0 -0.47429</pose>
+      <parent>teleskobik_cubuk_ic_kisim_link</parent>
+      <child>yarim_kure_pitch_link</child>
+      <axis>
+        <xyz>0 1 0</xyz>
+        <limit>
+          <lower>-0.5236</lower>
+          <upper>0.5236</upper>
+        </limit>
+      </axis>
+    </joint>
+    <link name="yarim_kure_pitch_link">
+      <inertial>
+        <mass>0.001</mass>
+        <inertia>
+          <ixx>1.09652e-05</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>1.09652e-05</iyy>
+          <iyz>0</iyz>
+          <izz>1.09652e-05</izz>
+        </inertia>
+      </inertial>
+    </link>
+    <joint name="yarim_kure_roll" type="revolute">
+      <parent>yarim_kure_pitch_link</parent>
+      <child>yarim_kure_link</child>
+      <axis>
+        <xyz>1 0 0</xyz>
+        <limit>
+          <lower>-0.5236</lower>
+          <upper>0.5236</upper>
+        </limit>
+      </axis>
+    </joint>
+    <link name="yarim_kure_link">
+      <inertial>
+        <mass>0.1</mass>
+        <inertia>
+          <ixx>0.0109652</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.0109652</iyy>
+          <iyz>0</iyz>
+          <izz>0.0109652</izz>
+        </inertia>
+      </inertial>
+      <visual name="yarim_kure_visual">
+        <geometry>
+          <mesh>
+            <scale>3.31137 3.31137 3.31137</scale>
+            <uri>model://totalmontaj_urdf/meshes/yarim_kure_link.STL</uri>
+          </mesh>
+        </geometry>
+      </visual>
+    </link>
+    <joint name="ust_planet" type="revolute">
+      <pose relative_to="yarim_kure_link">0.001217 0.109269 -7.3e-05 1.582 1.5111 3.14159</pose>
+      <parent>yarim_kure_link</parent>
+      <child>ust_planet_link</child>
+      <axis>
+        <xyz>0 0 1</xyz>
+        <limit>
+          <lower>-1e+16</lower>
+          <upper>1e+16</upper>
+        </limit>
+      </axis>
+    </joint>
+    <link name="ust_planet_link">
+      <inertial>
+        <mass>0.1</mass>
+        <inertia>
+          <ixx>0.0109652</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.0109652</iyy>
+          <iyz>0</iyz>
+          <izz>0.0109652</izz>
+        </inertia>
+      </inertial>
+      <visual name="ust_planet_visual">
+        <geometry>
+          <mesh>
+            <scale>3.31137 3.31137 3.31137</scale>
+            <uri>model://totalmontaj_urdf/meshes/ust_planet_link.STL</uri>
+          </mesh>
+        </geometry>
+      </visual>
+    </link>
+    <joint name="elevasyon" type="revolute">
+      <pose relative_to="ust_planet_link">0 0 0.496705 1.5708 -0.006502 -0.62211</pose>
+      <parent>ust_planet_link</parent>
+      <child>elevasyon_link</child>
+      <axis>
+        <xyz>0 0 1</xyz>
+        <limit>
+          <lower>0</lower>
+          <upper>1.5708</upper>
+        </limit>
+      </axis>
+    </joint>
+    <link name="elevasyon_link">
+      <inertial>
+        <mass>0.1</mass>
+        <inertia>
+          <ixx>0.0109652</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.0109652</iyy>
+          <iyz>0</iyz>
+          <izz>0.0109652</izz>
+        </inertia>
+      </inertial>
+      <visual name="elevasyon_visual">
+        <geometry>
+          <mesh>
+            <scale>3.31137 3.31137 3.31137</scale>
+            <uri>model://totalmontaj_urdf/meshes/elevasyon_link.STL</uri>
+          </mesh>
+        </geometry>
+      </visual>
+    </link>
+  </model>
+</sdf>

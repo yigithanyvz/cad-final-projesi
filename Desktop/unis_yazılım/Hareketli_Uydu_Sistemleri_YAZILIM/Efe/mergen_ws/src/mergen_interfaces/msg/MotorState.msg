@@ -1,0 +1,7 @@
+float64 stamp_sec
+float64 azimuth_deg
+float64 elevation_deg
+float64 stabilizer_x_mm
+float64 stabilizer_y_mm
+float64 azimuth_temp_c
+float64 elevation_temp_c

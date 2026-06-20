@@ -1,0 +1,9 @@
+mergen_control_node:
+  ros__parameters:
+    control_rate_hz: 100.0
+    azimuth_min_deg: 0.0
+    azimuth_max_deg: 360.0
+    elevation_min_deg: 0.0
+    elevation_max_deg: 90.0
+    relock_target_sec: 8.0
+    stabilizer_mm_per_degree: 4.0

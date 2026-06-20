@@ -1,0 +1,83 @@
+flowchart TB
+    %% ===================================================================
+    %% IEEE 1471 / ISO/IEC/IEEE 42010 UYUMLU MİMARİ DİYAGRAM
+    %% Proje: Mergen Yer İstasyonu Kontrol Arayüzü
+    %% Versiyon: 2.1 | Tarih: 2026-06-13
+    %% ===================================================================
+
+    %% STYLES — Greyscale / Rapora uygun
+    classDef block1 fill:#f8f8f8,stroke:#000000,color:#000000,stroke-width:2px
+    classDef block2 fill:#eeeeee,stroke:#000000,color:#000000,stroke-width:2px
+    classDef block3 fill:#e0e0e0,stroke:#000000,color:#000000,stroke-width:2px
+    classDef block4 fill:#d0d0d0,stroke:#000000,color:#000000,stroke-width:2px
+    classDef dec fill:#ffffff,stroke:#000000,color:#000000,stroke-width:2px,stroke-dasharray:4 2
+    classDef io fill:#f5f5f5,stroke:#000000,color:#000000,stroke-width:1px
+    classDef node_fill fill:#ffffff,stroke:#000000,color:#000000,stroke-width:2px
+    classDef sub fill:#ffffff,stroke:#666666,color:#000000,stroke-width:2px,stroke-dasharray:8 4
+    classDef title fill:#ffffff,stroke:#000000,color:#000000,stroke-width:2px
+
+    %% ===================================================================
+    %% SİSTEM BAŞLATMA
+    %% ===================================================================
+    START(["SİSTEMİ BAŞLAT"]):::title
+
+    %% ===================================================================
+    %% VIEWPOINT 1: GİRDİ İŞ PARÇACIK GÖRÜNÜMÜ (Ingress Worker Thread)
+    %% ===================================================================
+    subgraph VP1["VIEWPOINT 1: GİRDİ İŞ PARÇACIĞI / Non-blocking Asynchronous I/O Subsystem"]
+        direction TB
+        B1_CONN[("Donanım Bağlantısı<br/>connect_serial() / connect_wifi() / enable()")]:::block1
+        B1_READ["Kesintisiz Okuyucu<br/>reader_loop()"]:::block1
+        B1_PARSE["JSON Ayrıştırıcı<br/>parse_message() → msg.type = tel / ack / error"]:::block1
+        B1_CONN --> B1_READ --> B1_PARSE
+    end
+    START --> B1_CONN
+
+    %% ===================================================================
+    %% VIEWPOINT 2: EŞZAMANLILIK GÖRÜNÜMÜ (Concurrent Buffer Queue)
+    %% ===================================================================
+    subgraph VP2["VIEWPOINT 2: EŞZAMANLILIK / Thread-Safe Concurrent Buffer Queue (Producer-Consumer)"]
+        B2_Q["queue.Queue(maxsize=200)<br/><br/>Ingress Thread → push()<br/>GUI Thread → drain()"]:::block2
+    end
+    B1_PARSE --> B2_Q
+
+    %% ===================================================================
+    %% VIEWPOINT 3: SUNUM GÖRÜNÜMÜ (Main GUI Execution Loop)
+    %% ===================================================================
+    subgraph VP3["VIEWPOINT 3: SUNUM GÖRÜNÜMÜ / Deterministic Timer-Interrupt Execution (ν = 10 Hz)"]
+        direction TB
+
+        B3_TIMER["after(100, poll_state)"]:::node_fill
+        B3_DEC{"Sistem<br/>Durduruldu<br/>mu?"}:::dec
+
+        B3_DEQUEUE["process_event_queue()"]:::block3
+        B3_FAIL["_update_failsafe()<br/>Δτ < 0.5s → NORMAL<br/>0.5–1.5s → UYARI<br/>1.5–3s → safe_hold<br/>> 3s → laser_off"]:::block3
+        B3_TRACK["_update_tracking_state()<br/>NO_TARGET ↔ TRACKING<br/>HOLD_LAST ↔ SEARCHING"]:::block3
+        B3_UI["_update_ui()<br/>Grafik · Etiket · LED Güncelleme"]:::block3
+        B3_LOG["JSONL Kayıt<br/>commands.jsonl · telemetry.jsonl · events.jsonl"]:::block3
+        B3_LOOP["after(100, poll_state) ile<br/>döngü tekrarı"]:::node_fill
+
+        B3_TIMER --> B3_DEC
+        B3_DEC -- "HAYIR" --> B3_DEQUEUE
+        B3_DEQUEUE --> B3_FAIL --> B3_TRACK --> B3_UI --> B3_LOG --> B3_LOOP
+    end
+    B2_Q --> B3_DEQUEUE
+
+    %% ===================================================================
+    %% VIEWPOINT 4: GÜVENİLİRLİK GÖRÜNÜMÜ (Graceful Degradation & Safe Shutdown)
+    %% ===================================================================
+    subgraph VP4["VIEWPOINT 4: GÜVENİLİRLİK / Graceful Degradation and Safe Shutdown Subsystem"]
+        direction TB
+        B4_FLUSH["JSONL flush → Kalan verileri<br/>diske yaz"]:::block4
+        B4_STOP["reader_running = False<br/>→ Reader thread durdur"]:::block4
+        B4_CLOSE["_disconnect_io()<br/>→ Serial/WiFi/ROS bağlantılarını kapat"]:::block4
+        B4_IDLE["SystemMode = IDLE<br/>→ Sistem beklemede"]:::block4
+        B4_FLUSH --> B4_STOP --> B4_CLOSE --> B4_IDLE
+    end
+    B3_DEC -- "EVET" --> B4_FLUSH
+
+    %% ===================================================================
+    %% SİSTEM DURUMU ÇIKIŞI
+    %% ===================================================================
+    EXIT(["SİSTEM DURDURULDU (IDLE)"]):::title
+    B4_IDLE --> EXIT

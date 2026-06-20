@@ -1,0 +1,9 @@
+float64 stamp_sec
+float64 azimuth_deg
+float64 elevation_deg
+float64 stabilizer_x_mm
+float64 stabilizer_y_mm
+float64 azimuth_pwm
+float64 elevation_pwm
+float64 stabilizer_x_pwm
+float64 stabilizer_y_pwm
