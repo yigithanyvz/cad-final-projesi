@@ -1,3 +1,0 @@
-saved_at,mode,time_s,azimuth_deg,elevation_deg,target_azimuth_deg,target_elevation_deg,roll_deg,pitch_deg,boresight_error_deg,locked
-2026-05-15 15:43:28,AZ_EL_TRACKING,180.0,154.5046,41.016,154.6026,41.1278,-0.2477,7.9926,0.1486,True
-2026-05-15 15:51:33,AZ_EL_TRACKING,299.99,119.7236,31.0682,119.6983,30.7475,-0.3062,8.0322,0.3218,True

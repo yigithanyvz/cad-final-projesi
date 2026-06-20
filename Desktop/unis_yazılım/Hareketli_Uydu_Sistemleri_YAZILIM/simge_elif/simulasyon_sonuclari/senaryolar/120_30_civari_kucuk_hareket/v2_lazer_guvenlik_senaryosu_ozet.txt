@@ -1,8 +1,0 @@
-V2 Lazer Guvenlik Senaryosu Ozeti
-Kaynak CSV: /home/simsim/Masaüstü/unis/simge_elif/azimut_elevasyon_simulasyon_sonuclari/v2_dataset_tabanli_azimut_elevasyon_sonuc.csv
-Senaryolu CSV: /home/simsim/Masaüstü/unis/simge_elif/azimut_elevasyon_simulasyon_sonuclari/v2_dataset_tabanli_lazer_guvenlik_senaryolu_sonuc.csv
-Insan algilama araligi: 80.00-90.00 saniye
-Lazer kesme ornek sayisi: 1001
-Lazer kesme suresi: 10.01 saniye
-Guvenlik davranisi: human_detected=true iken laser_enabled=false
-Teensy pin 33/MCLK2: insan algilaninca LOW kabul edilir, transistor base akimi kesilir

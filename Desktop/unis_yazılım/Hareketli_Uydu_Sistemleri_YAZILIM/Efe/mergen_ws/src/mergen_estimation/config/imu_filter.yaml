@@ -1,4 +1,0 @@
-mergen_imu_filter_node:
-  ros__parameters:
-    process_noise: 0.01
-    measurement_noise: 0.25
